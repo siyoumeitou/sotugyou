@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <title>あああ</title>
+       <!-- <link  
+            rel="stylesheet"
+            href="{{ url_for('crud.static',filename='style.css') }}"
+        /> -->
+    </head>
+
+    <body>
+        <h2>{{ memo.title }}</h2>
+        <a>{{ memo.updated_at }}</a>
+        <p>{{ memo.memo }}</p>
+        <button id="delete">削除</button>
+    </body> 
+    <script>
+        var btn = document.getElementById("delete");
+        btn.addEventListener("click",()=>{
+            var result = window.confirm("メモを削除します。\n削除されたメモは元に戻せません。");
+            if (result){
+                window.location.href = "{{ url_for('memo.delete_memo',memo_id=memo.memo_id) }}";
+            }
+        });
+    </script>
+</html>

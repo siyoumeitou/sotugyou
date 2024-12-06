@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <title>あああ</title>
+       <!-- <link  
+            rel="stylesheet"
+            href="{{ url_for('crud.static',filename='style.css') }}"
+        /> -->
+    </head>
+
+    <body>
+        <form
+            action="{{ url_for('project.create_project') }}"
+            method="POST"
+            novalidate="novalidate"
+            target="app"
+        >
+            {{ form.csrf_token }}
+            <p>{{ form.name.label }} {{ form.name(placeholder="プロジェクト名") }}</p>
+            {% for error in form.name.errors %}
+            <span style="color:red;">{{error}}</span>
+            {% endfor %}
+            <p>{{ form.comment.label }} {{ form.comment(placeholder="詳細") }}</p>
+            {% for error in form.comment.errors %}
+            <span style="color:red;">{{error}}</span>
+            {% endfor %}
+
+            
+            <div>
+                
+                {{ form.friends.label }}<br>
+                <p><span id="selectedCount">0</span>人選択中</p>
+                <div id="checkboxes">
+                    {% for subfield in form.friends %}
+                        <label>
+                            <input type="checkbox" name="{{ subfield.name }}" value="{{ subfield.data }}" onchange="updateCount()">
+                            {{ subfield.label.text }}
+                        </label><br>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <p>{{ form.submit() }}</p>
+        </form>
+        <script>
+            function updateCount() {
+                const checkboxes = document.querySelectorAll('#checkboxes input[type="checkbox"]');
+                const selectedCount = Array.from(checkboxes).filter(checkbox => checkbox.checked).length;
+                document.getElementById('selectedCount').innerText = selectedCount;
+            }
+            //初期化
+            document.addEventListener('DOMContentLoaded', updateCount);
+        </script>
+    </body> 
+
+</html>

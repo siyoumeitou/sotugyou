@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>再接続</title>
+</head>
+<body>
+    <script>
+        //親フレームのURLを変更
+        if (window.parent && window.parent.frames['app']) {
+            window.parent.frames['app'].location.href = "{{ url_for('project.app_project') }}";
+        }
+    </script>
+</body>
+</html>

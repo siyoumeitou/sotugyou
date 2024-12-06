@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <title>あああ</title>
+       <!-- <link  
+            rel="stylesheet"
+            href="{{ url_for('crud.static',filename='style.css') }}"
+        /> -->
+    </head>
+
+    <body>
+        <p>
+            <a href="/project/app_project" target="app">戻る</a>
+        </p>
+        <a href="{{ url_for('project.main_project',project_id=project.project_id) }}" target="main">{{ project.name }}</a>
+        <p>
+            <a>{{tasks|length}}件のタスク</a>
+        </p>
+        <ul class="list">
+        <li><a href="{{ url_for('project.create_task',project_id=project.project_id) }}" target="main">タスクを作成+</a></li>
+        {% if tasks %}
+        {% for task in tasks %}
+        <li><a href="{{ url_for('project.main_task', task_id=task.task_id) }}" target="main">{{task.name}}</a></li>
+        {% endfor %}
+        </ul>
+        {% else %}
+        <a>タスクがありません</a>
+        {% endif %}
+        <p>AIテスト</p>
+        <ul class="list">
+            <li><a href="{{ url_for('project.select_ai',project_id=project.project_id,type=1) }}" target="main">タスクの優先順位</a></li>
+            <li><a href="{{ url_for('project.select_ai',project_id=project.project_id,type=2) }}" target="main">タスクの提案</a></li>
+            <li><a href="{{ url_for('project.select_ai',project_id=project.project_id,type=3) }}" target="main">チェックリストの考案</a></li>
+        </ul>
+
+    </body> 
+</html>

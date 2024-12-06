@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <title>あああ</title>
+       <!-- <link  
+            rel="stylesheet"
+            href="{{ url_for('crud.static',filename='style.css') }}"
+        /> -->
+    </head>
+
+    <body>
+        <p>進捗状況  {{ task.progresses|length }}件登録済み</p>
+        {% for progress in task.progresses %}
+        <div>
+            <div><a>{{ progress.name }}</a></div>
+            <p>作成者:{{ progress.register_name }}</p>
+            <div>
+                <a>{{ progress.progress}}</a><p>
+                {% if progress.comment %}
+                <a>{{ progress.comment}}</a><p>
+                {% endif %}
+                <a>{{ progress.percent }}%完了</a>
+            </div>
+        </div>
+        {% endfor %}
+
+    </body> 
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <title>あああ</title>
+       <!-- <link  
+            rel="stylesheet"
+            href="{{ url_for('crud.static',filename='style.css') }}"
+        /> -->
+    </head>
+
+    <body>
+        {% if chats %}
+        {% for chat in chats %}
+        <li><a>{{ chat.sender_name }}:{{ chat.content }}   {{ chat.sended_at }}</a></li>
+        {% endfor %}
+        {% endif %}
+        <form
+            action="{{ url_for('chat.main_chat',chat_id=chat_id)}}"
+            method="POST"
+            novalidate="novalidate"
+        >
+            {{ form.csrf_token }}
+            <p>
+                {{ form.chat(placeholder="入力") }}    {{ form.submit() }}
+            </p>
+            {% for error in form.chat.errors %}
+            <span style="color:red;">{{error}}</span>
+            {% endfor %}
+            
+        </form>
+    </body> 
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <title>あああ</title>
+       <!-- <link  
+            rel="stylesheet"
+            href="{{ url_for('crud.static',filename='style.css') }}"
+        /> -->
+    </head>
+
+    <body>
+        <a>メモ</a><p>
+        
+        <a href="/memo/create_memo" target="main">メモを作成+</a><p>
+        <a href="/memo/create_folder" target="main">ファイルを作成+</a><p>
+        
+        {% if folders %}
+        <h3>フォルダー</h3>
+            {% for folder in folders %}
+            <a href="{{ url_for('memo.main_folder', folder_id=folder.folder_id) }}" target="main">{{ folder.name }}</a>
+            <ul class="list">
+                {% for memo in folder.memo %}
+                <li><a href="{{ url_for('memo.main_memo', memo_id=memo.memo_id) }}" target="main">{{memo.title}}</a></li>
+                {% endfor %}
+            </ul>
+            {% endfor %}
+        {% endif %}
+
+        {% if memos %}
+            {% for memo in memos %}
+                <li><a href="{{ url_for('memo.main_memo', memo_id=memo.memo_id) }}" target="main">{{memo.title}}</a></li>
+            {% endfor %}
+        {% else %}
+        <a>メモがありません</a>
+        {% endif %}
+    </body> 
+</html>

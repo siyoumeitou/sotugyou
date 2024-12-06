@@ -1,0 +1,28 @@
+{% extends "auth/base.html" %}
+{% block title %}ユーザー新規登録{% endblock %}
+{% block content %}
+<div class="mx-auto dt-auth-main">
+    <div class="card dt-auth-signup">
+        <header>ユーザー新規登録</header>
+        <section>
+            <form
+                method="post"
+                action="{{ url_for('auth.signup',next=request.args.get('next')) }}"
+                class="form-signin"
+            >   
+                <a href="/auth/login">ログインはこちら</a><p>
+                {{ form.csrf_token }}
+                {% for message in get_flashed_messages() %}
+                <div class="dt-auth-flash">{{message}}</div>
+                {% endfor %}
+                <a>本名を入力してください。</a>{{ form.name(class="form-control dt-auth-input",placeholder="本名") }}<p></p>
+                <a>ユーザー名を入力してください。</a>{{ form.username(size=30,class="form-control dt-auth-input",placeholder="ユーザー名") }}<p></p>
+                <a>あなたはプロジェクトリーダーですか。</a>{{ form.if_ProjectLeader(class="form-control dt-auth-input",placeholder="PL") }}<p></p>
+                <a>メールアドレスを入力してください。</a>{{ form.email(class="form-control dt-auth-input",placeholder="メールアドレス") }}<p></p>
+                <a>パスワードを入力してください。</a>{{ form.password(class="form-control dt-auth-input",placeholder="パスワード") }}<p></p>
+                {{ form.submit(class="btn btn-md btn-primary btn-block dt-auth-btn") }}
+            </form>
+        </section>
+    </div>
+</div>
+{% endblock %}

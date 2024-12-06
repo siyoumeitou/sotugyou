@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <title>あああ</title>
+       <!-- <link  
+            rel="stylesheet"
+            href="{{ url_for('crud.static',filename='style.css') }}"
+        /> -->
+    </head>
+
+    <body>
+        <form
+            action="{{ url_for('chat.add_chat') }}"
+            method="POST"
+            novalidate="novalidate"
+            target="app"
+        >
+            {{ form.csrf_token }}
+            <div>チャット先登録</div>
+            <p>登録する相手のアカウント名を入力して下さい。</p>
+            <div>
+                {{ form.username.label }} {{ form.username(placeholder="アカウント名") }} {{ form.submit() }}
+            </div>
+            {% for error in form.username.errors %}
+            <span style="color:red;">{{error}}</span>
+            {% endfor %}
+        </form>
+        <a href="/chat/create_group">グループチャットを作成する</a>
+    </body> 
+</html>

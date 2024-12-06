@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <title>あああ</title>
+       <!-- <link  
+            rel="stylesheet"
+            href="{{ url_for('crud.static',filename='style.css') }}"
+        /> -->
+    </head>
+
+    <body>
+        <a>プロジェクト</a>
+        <ul class="list">
+        {% if current_user.if_ProjectLeader %}
+        <li><a href="/project/create_project" target="main">プロジェクトを作成+</a></li>
+        {% endif %}
+        {% if projects %}
+            {% for project in projects %}
+                <li><a href="{{ url_for('project.app_taspro', project_id=project.project_id) }}" target="app">{{project.name}}</a></li>
+            {% endfor %}
+        {% else %}
+        </ul>
+        <a>プロジェクトがありません</a>
+        {% endif %}
+    </body> 
+</html>

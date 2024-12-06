@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <title>あああ</title>
+       <!-- <link  
+            rel="stylesheet"
+            href="{{ url_for('crud.static',filename='style.css') }}"
+        /> -->
+    </head>
+
+    <body>
+        <a>{{ project.name }}</a>
+        {% if task %}
+        <a> > {{ task.name }}</a><p>
+        <a href="{{ url_for('project.progress_registation', task_id=task.task_id) }}" target="select">進捗登録</a>
+        {% endif %}
+    </body> 
+</html>

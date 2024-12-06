@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <title>あああ</title>
+       <!-- <link  
+            rel="stylesheet"
+            href="{{ url_for('crud.static',filename='style.css') }}"
+        /> -->
+    </head>
+
+    <body>
+        <h1>{{ project.name }}</h1>
+        {% if project.comment %}
+        <p>{{ project.comment }}</p>
+        {% endif %}
+        <a>進捗状況：<meter min="0" max="100" value={{project.project_id|average}}></meter> {{project.project_id|average}}%</a>
+        <p>プロジェクトリーダー{{ project.creater_id }}</p>
+        <div>
+            <p>メンバー：{{project.project_member|length}}人</p>
+            {% for member in project.project_member %}
+            <p>{{ member.member_name }}さん</p>
+            {% endfor %}
+        </div>
+    </body> 
+</html>

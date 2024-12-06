@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <title>あああ</title>
+       <!-- <link  
+            rel="stylesheet"
+            href="{{ url_for('crud.static',filename='style.css') }}"
+        /> -->
+    </head>
+
+    <body>
+        <form
+            action="{{ url_for('project.progress_registation',task_id=task_id) }}"
+            method="POST"
+            novalidate="novalidate"
+        >
+            {{ form.csrf_token }}
+            <p>{{ form.name.label }} {{ form.name(placeholder="作業内容") }}</p>
+            {% for error in form.name.errors %}
+            <span style="color:red;">{{error}}</span>
+            {% endfor %}
+            <p>{{ form.progress.label }} {{ form.progress(placeholder="進捗") }}</p>
+            {% for error in form.progress.errors %}
+            <span style="color:red;">{{error}}</span>
+            {% endfor %}
+            <p>{{ form.comment.label }} {{ form.comment(placeholder="詳細") }}</p>
+            {% for error in form.comment.errors %}
+            <span style="color:red;">{{error}}</span>
+            {% endfor %}
+            <p>{{ form.percent.label }}%{{ form.percent(placeholder="進捗割合") }}</p>
+            {% for error in form.percent.errors %}
+            <span style="color:red;">{{error}}</span>
+            {% endfor %}
+
+            <p>{{ form.submit() }}</p>
+        </form>
+    </body> 
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <title>あああ</title>
+       <!-- <link  
+            rel="stylesheet"
+            href="{{ url_for('crud.static',filename='style.css') }}"
+        /> -->
+    </head>
+
+    <body>
+        <form
+            action="{{ url_for('project.create_task',project_id=project_id) }}"
+            method="POST"
+            novalidate="novalidate"
+            target="app"
+        >
+            {{ form.csrf_token }}
+            <p>{{ form.name.label }} {{ form.name(placeholder="タスク名") }}</p>
+            {% for error in form.name.errors %}
+            <span style="color:red;">{{error}}</span>
+            {% endfor %}
+            <p>{{ form.description.label }} {{ form.description(placeholder="作業内容") }}</p>
+            {% for error in form.description.errors %}
+            <span style="color:red;">{{error}}</span>
+            {% endfor %}
+            <p>{{ form.comment.label }} {{ form.comment(placeholder="詳細") }}</p>
+            {% for error in form.comment.errors %}
+            <span style="color:red;">{{error}}</span>
+            {% endfor %}
+
+            <p>{{ form.submit() }}</p>
+        </form>
+    </body> 
+</html>
