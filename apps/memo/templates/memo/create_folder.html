@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <title>あああ</title>
+       <!-- <link  
+            rel="stylesheet"
+            href="{{ url_for('crud.static',filename='style.css') }}"
+        /> -->
+    </head>
+
+    <body>
+        <form
+            action="{{ url_for('memo.create_folder') }}"
+            method="POST"
+            novalidate="novalidate"
+        >
+            {{ form.csrf_token }}
+            <div>フォルダー作成</div>
+            {{ form.name.label }} {{ form.name(placeholder="フォルダー名") }}
+            {% for error in form.name.errors %}
+            <span style="color:red;">{{error}}</span>
+            {% endfor %}
+            {{ form.submit() }}
+        </form>
+    </body> 
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <title>あああ</title>
+       <!-- <link  
+            rel="stylesheet"
+            href="{{ url_for('crud.static',filename='style.css') }}"
+        /> -->
+    </head>
+
+    <body>
+        <p>進捗状況  {{ task.checks|length }}項目中{{ checked_count(task.task_id) }}項目完了</p>
+        {% if task.checks %}
+        {% for check in task.checks %}
+        <div>
+            <lebel>
+                <h4>{{ check.name }}</h4>
+                <div><input type="checkbox" id="{{check.check_id}}" {% if check.checked %}checked{% endif %}></div>
+                {{ check.comment }}
+            </lebel>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p>チェックシートがありません。「編集」でチェックシートを作成しましょう。</p>
+        {% endif %}
+        <button onclick="window.location.href='{{ url_for('project.select_check', task_id=task.task_id) }}'">編集</button>
+
+    </body> 
+    <script>
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', async event => {
+                const check_id = event.target.getAttribute('id');
+                const isChecked = event.target.checked;
+                //update_checkboxにテータを送る
+                const response = await fetch('/update_checkbox', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        id: parseInt(check_id),
+                        checked: isChecked
+                    })
+                })
+            })
+        })
+    </script>
+</html>

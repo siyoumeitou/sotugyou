@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <title>あああ</title>
+       <!-- <link  
+            rel="stylesheet"
+            href="{{ url_for('crud.static',filename='style.css') }}"
+        /> -->
+    </head>
+
+    <body>
+        <form
+            action="{{ url_for('chat.create_group') }}"
+            method="POST"
+            novalidate="novalidate"
+            target="app"
+        >
+            {{ form.csrf_token }}
+            <div>グループチャット作成</div>
+            <p>グループ名を入力してください。</p>
+            <a>{{ form.name.label }}{{ form.name(placeholder="グループ名")}}</a>
+            <p>登録する相手のアカウント名を選択して下さい。</p>
+            <div>
+                <p>{{ form.friends.label }} <span id="selectedCount">0</span>人選択中</p>
+                <div id="checkboxes">
+                    {% for subfield in form.friends %}
+                        <label>
+                            <input type="checkbox" name="{{ subfield.name }}" value="{{ subfield.data }}" onchange="updateCount()">
+                            {{ subfield.label.text }}
+                        </label><br>
+                    {% endfor %}
+                </div>
+            </div>
+            {{ form.submit() }}
+            {% for error in form.name.errors %}
+            <span style="color:red;">{{error}}</span>
+            {% endfor %}
+        </form>
+        <script>
+            function updateCount() {
+                const checkboxes = document.querySelectorAll('#checkboxes input[type="checkbox"]');
+                const selectedCount = Array.from(checkboxes).filter(checkbox => checkbox.checked).length;
+                document.getElementById('selectedCount').innerText = selectedCount;
+            }
+            //初期化
+            document.addEventListener('DOMContentLoaded', updateCount);
+        </script>
+    </body> 
+</html>

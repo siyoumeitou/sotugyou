@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <title>あああ</title>
+       <!-- <link  
+            rel="stylesheet"
+            href="{{ url_for('crud.static',filename='style.css') }}"
+        /> -->
+    </head>
+
+    <body>
+        <h2>{{ folder.name }}</h2>
+        <p>フォルダーの中身</p>
+        <ul class="list">
+            {% for memo in folder.memo %}
+            <li><a href="{{ url_for('memo.main_memo', memo_id=memo.memo_id) }}" target="main">{{memo.title}}</a></li>
+            {% endfor %}
+        </ul>
+        <button id="delete">削除</button>
+    </body> 
+    <script>
+        var btn = document.getElementById("delete");
+        btn.addEventListener("click",()=>{
+            var result = window.confirm("ファイルを削除します。\nファイル内のメモも全て削除されます。");
+            if (result){
+                window.location.href = "{{ url_for('memo.delete_folder',folder_id=folder.folder_id) }}";
+            }
+        });
+    </script>
+</html>

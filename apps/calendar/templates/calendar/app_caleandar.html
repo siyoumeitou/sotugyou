@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <title>あああ</title>
+    </head>
+
+    <body>
+        <header>
+            <link rel="stylesheet" href="{{ url_for('calendar.static', filename='style.css') }}">
+        </header>
+        <script src="{{ url_for('calendar.static', filename='caleandar.js') }}"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var events = [];
+                const eventsData = JSON.parse('{{ events|tojson|safe }}');
+                eventsData.forEach(event => {
+                    const date = new Date(event.date)
+                    const link = String(event.schedule_id)
+                    events.push({
+                        "Date": new Date(date.getFullYear(),date.getMonth(),date.getDate()),
+                        "Title": event.title,
+                        "Link": event.link
+                    });
+                });
+                console.log(events)
+                var settings = {};
+                var element = document.getElementById('caleandar');
+                caleandar(element, events, settings);
+            });
+        </script>
+        <div id="caleandar"></div>
+        <a href="/calendar/add_schedule">予定を作成</a> 
+        
+        {% for event in events %}
+        <p>{{event.date}}<a href="{{ url_for('calendar.app_schedule', schedule_id=event.id) }}">{{event.title}}</a></p>
+        {% endfor %}
+    </body> 
+</html>

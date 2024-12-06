@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <title>画面分割</title>
+    </head>
+
+    <frameset cols="200,*" frameborder="0">
+        <frame src="{{ url_for('project.list_task',project_id=task.project_id) }}" name="list">
+        <frame src="{{ url_for('project.main_task',task_id=task.task_id) }}" name="main">
+    </frameset>
+</html>

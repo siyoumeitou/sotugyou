@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" name="csrf-token" content="{{ csrf_token() }}"/>
+        <title>あああ</title>
+    </head>
+
+    <body>
+        <h2>チェックシートの編集</h2>
+        <p><span id="count">0</span>項目</p>
+
+        <form 
+            id="items-form" 
+            method="POST" 
+            action="{{ url_for('project.update_sheet', task_id=task.task_id) }}"
+        >
+            {{ csrf_token() }}
+            <div id="item-container">
+                {% for check in task.checks %}
+                <input type="hidden" name="check_id_{{ loop.index }}" value="{{ check.check_id }}">
+                <label for="name{{ loop.index }}">項目名</label>
+                <input type="text" id="name{{ loop.index }}" name="name[]" required>
+                <label for="detail{{ loop.index }}">詳細</label>
+                <input type="text" id="detail{{ loop.index }}" name="detail[]">
+                <button type="button" onclick="this.parentElement.remove()">削除する</button>
+                <br><br>
+                {% endfor %}
+            </div>
+            <button type="button" onclick="addItem()">項目を追加</button>
+            <button type="button" onclick="saveChanges()">変更を保存する</button>
+        </form>
+
+    </body> 
+    <script>
+        const taskId = {{ task.task_id }};
+
+        function saveChanges() {
+            const form = document.getElementById('items-form');
+            const formData = new FormData(form);
+            const items = [];
+
+            // フォームのデータを配列に変換
+            for (let [key, value] of formData.entries()) {
+                const [field, index] = key.split(/(\d+)/).slice(0, 2);
+                const itemIndex = parseInt(index, 10);
+
+                if (!items[itemIndex]) {
+                    items[itemIndex] = { name: '', detail: '' };
+                }
+
+                items[itemIndex][field] = value;
+            }
+
+            // Flaskのエンドポイントに送信
+            fetch(`/update_sheet/${taskId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ items: items })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data.message);
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        function addItem(){
+            const container = document.getElementById('item-container');
+            const itemCount = container.children.length;
+            document.getElementById('count').innerText = itemCount + 1; //件数表示
+
+            const newItem = document.createElement('div');
+            newItem.classList.add('item');
+            newItem.innerHTML=`
+                <input type="hidden" name="check_id_${itemCount}" value="${itemCount}">
+                <label for="name${itemCount}">項目名</label>
+                <input type="text" id="name${itemCount}" name="name[]" required>
+                <label for="detail${itemCount}">詳細</label>
+                <input type="text" id="detail${itemCount}" name="detail[]">
+                <button type="button" onclick="this.parentElement.remove()">削除する</button>
+                <br><br>
+            `
+            container.appendChild(newItem);
+        }
+    </script>
+</html>

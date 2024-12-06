@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <title>あああ</title>
+       <!-- <link  
+            rel="stylesheet"
+            href="{{ url_for('crud.static',filename='style.css') }}"
+        /> -->
+    </head>
+
+    <body>
+        <h2>スケジュールの追加</h2>
+        <form
+            action="{{ url_for('calendar.add_schedule') }}"
+            method="POST"
+            novalidate="novalidate"
+            target="app"
+        >
+            {{ form.csrf_token }}
+            {{ form.date.label }} {{ form.date(placeholder="日付") }} 
+            {{ form.title.label }} {{ form.title(placeholder="スケジュール名") }} 
+            {{ form.memo.label }} {{ form.memo(placeholder="メモ") }} 
+            {{ form.link.label }} {{ form.link(placeholder="関連リンク") }} 
+            {{ form.color.label }} {{ form.color }}
+            {{ form.submit() }}
+            {% for error in form.data.errors %}
+            <span style="color:red;">{{error}}</span>
+            {% endfor %}
+        </form>
+    </body> 
+</html>

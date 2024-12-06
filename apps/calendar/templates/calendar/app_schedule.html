@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <title>あああ</title>
+       <!-- <link  
+            rel="stylesheet"
+            href="{{ url_for('crud.static',filename='style.css') }}"
+        /> -->
+    </head>
+
+    <body>
+        <h2>{{ schedule.title }}</h2>
+        <a>{{ schedule.date }}</a>
+        <p>{{ schedule.memo }}</p>
+        {% if schedule.link %}
+        <p>関連リンク:{{ schedule.link }}</p>
+        {% endif %}
+        <button id="delete">削除</button>
+    </body> 
+    <script>
+        var btn = document.getElementById("delete");
+        btn.addEventListener("click",()=>{
+            var result = window.confirm("予定を削除します。\n削除された予定は元に戻せません。");
+            if (result){
+                window.location.href = "{{ url_for('calendar.delete_schedule',schedule_id=schedule.schedule_id) }}";
+            }
+        });
+    </script>
+</html>
