@@ -1,0 +1,57 @@
+/* 阿部鉄慎 */
+
+
+/* titleのcss */
+/* ページ全体の背景色を設定 */
+body {
+    background-color: #99CCFF; /* 背景色を#99CCFFに設定 */
+    font-family: Arial, sans-serif; /* 任意でフォントを指定 */
+    margin: 0; /* ページの余白をリセット */
+}
+
+/* ヘッダー全体のスタイル */
+.header {
+    display: flex;
+    justify-content: center; /* 中央揃えをベースに設定 */
+    align-items: center; /* 高さを揃える */
+    position: relative; /* 中央揃えと右揃えを両立するために設定 */
+    padding: 10px 20px; /* 余白の追加 */
+    background-color: #99CCFF; /* ヘッダー背景色も#99CCFFに設定（任意） */
+}
+
+/* タイトル部分のスタイル（中央揃え） */
+.app-title {
+    font-size: 30px; /* 文字サイズ30px */
+    margin: 0; /* マージンをリセット */
+}
+
+/* ナビゲーション部分のスタイル（右揃え） */
+.nav {
+    position: absolute;
+    right: 20px; /* 右端からの距離を調整 */
+    display: flex;
+    gap: 10px; /* 各リンクの間隔 */
+}
+
+/* リンクの基本スタイル */
+.nav-link {
+    text-decoration: none;
+    color: #000;
+}
+
+/* ログアウトリンクのスタイル */
+.nav-link.logout {
+    display: inline-block;
+    padding: 5px 10px; /* 内側の余白 */
+    background-color: #99CCFF; /* 背景色を薄緑に設定 */
+    border-radius: 5px; /* 角を丸くする（任意） */
+    color: #000; /* 文字色 */
+    text-decoration: none; /* 下線を消す */
+    transition: background-color 0.3s, color 0.3s; /* 背景色と文字色の変化に遷移効果を追加 */
+}
+
+/* ホバー時に背景色を黄色に変更 */
+.nav-link.logout:hover {
+    background-color: #DCEEFF; /* 背景色を黄色に */
+    color: #000; /* 文字色はそのまま */
+}

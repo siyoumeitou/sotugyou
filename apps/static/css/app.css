@@ -1,0 +1,22 @@
+/* 阿部鉄慎 */
+
+
+/* 全体のスタイル */
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* 高さを画面全体に設定 */
+    background-color: #cde2f6; /* 背景色を薄いグレーに設定 */
+    font-family: Arial, sans-serif;
+}
+
+/* メッセージのスタイル */
+.welcome-message {
+    font-size: 20px; /* 文字サイズを20pxに設定 */
+    font-weight: bold; /* 太字に設定 */
+    text-align: center;
+    color: #333; /* 文字色を濃いグレーに設定 */
+}

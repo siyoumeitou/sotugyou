@@ -1,0 +1,66 @@
+/* 阿部鉄慎 */
+
+
+/* 中央揃えの親コンテナ */
+.dt-auth-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* 画面全体の高さを占める */
+    background-color: #e2edff; /* 背景色を薄い水色に設定 */
+}
+
+/* ヘッダーのログイン文字を大きくする */
+.dt-auth-login header {
+    font-size: 2em; /* 例: フォントサイズを2倍に */
+    font-weight: bold; /* 文字を太くする */
+    text-align: center;
+    margin-bottom: 20px; /* 下にスペースを追加 */
+}
+
+.dt-auth-login {
+    width: 400px;
+    text-align: center;
+    padding: 20px;
+    background-color: #ffffff; /* カードの背景色を白に設定 */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 影をつけて浮き上がる効果 */
+}
+
+/* 入力項目のラベルを中央揃え */
+.dt-auth-login a {
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+    font-weight: bold;
+    color: #333;
+}
+
+/* 入力欄を中央に配置 */
+.dt-auth-input {
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* ログインボタンと新規登録リンクの配置 */
+.dt-auth-actions {
+    display: flex;
+    justify-content: space-between; /* 左右にスペースを持たせる */
+    align-items: center;           /* 高さを揃える */
+    margin-top: 15px;
+}
+
+/* 新規登録リンクのスタイル */
+.dt-signup-link {
+    font-size: 0.9em;
+    color: #007bff;
+    text-decoration: none;
+}
+
+/* ログインボタンのスタイル */
+.dt-auth-btn {
+    padding: 10px 20px;
+}

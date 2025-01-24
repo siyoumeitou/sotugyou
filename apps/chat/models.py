@@ -19,17 +19,31 @@ class Chat(db.Model):
 
 class ChatContent(db.Model):
     __tablename__ = "chat_contents"
-    content_id = db.Column(db.Integer,primary_key=True)
-    chat_id = db.Column(db.Integer,db.ForeignKey('chats.chat_id'))
-    sender_id = db.Column(db.Integer,db.ForeignKey("users.id"))
+    content_id = db.Column(db.Integer, primary_key=True)
+    chat_id = db.Column(db.Integer)
+    user_id = db.Column(db.Integer)
+    sender_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     sender_name = db.Column(db.String)
     content = db.Column(db.String)
-    image = db.Column(db.String,nullable=True)
-    sended_at = db.Column(db.DateTime,default=datetime.now)
+    image = db.Column(db.String, nullable=True)
+    sended_at = db.Column(db.DateTime, default=datetime.now)
+    __table_args__ = (
+        db.ForeignKeyConstraint(
+            ['chat_id', 'user_id'],
+            ['chats.chat_id', 'chats.user_id']
+        ),
+    )
 
 class ChatMember(db.Model):
     __tablename__ = "chat_members"
-    chat_member_id = db.Column(db.Integer,primary_key=True)
-    chat_id = db.Column(db.Integer,db.ForeignKey('chats.chat_id'))
-    member_id = db.Column(db.Integer,db.ForeignKey("users.id"))
+    chat_member_id = db.Column(db.Integer, primary_key=True)
+    chat_id = db.Column(db.Integer)
+    user_id = db.Column(db.Integer)
+    member_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     member_name = db.Column(db.String)
+    __table_args__ = (
+        db.ForeignKeyConstraint(
+            ['chat_id', 'user_id'],
+            ['chats.chat_id', 'chats.user_id']
+        ),
+    )

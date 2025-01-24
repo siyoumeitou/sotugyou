@@ -3,32 +3,19 @@
     <head>
         <meta charset="UTF-8" />
         <title>あああ</title>
-       <!-- <link  
-            rel="stylesheet"
-            href="{{ url_for('crud.static',filename='style.css') }}"
-        /> -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/list.css') }}" />
     </head>
 
     <body>
-        <a>チャット先</a><p>
-        <a href="/chat/add_chat" target="main">チャット先を追加+</a>
-        {% if groups %}
-        <p><a>グループチャット</a>
-        <ul class="group">
-            {% for group in groups %}
-            <li><a href="{{ url_for('chat.main_chat', chat_id=group.chat_id) }}" target="main">{{ group.chat_name }}</a></li>
-            {% endfor %}
-        </ul>
-        {% endif %}
-        
+        <a>チャット先</a>
+        <ul class="list">
+            <li><a href="/chat/add_chat" target="main">チャット先を追加+</a></li>
         {% if chats %}
-        <p><a>個人チャット</a>
-        <ul class="individual">
             {% for chat in chats %}
             <li><a href="{{ url_for('chat.main_chat', chat_id=chat.chat_id) }}" target="main">{{ chat.chat_name }}</a></li>
             {% endfor %}
-        </ul>
         {% else %}
+        </ul>
         <a>チャット先がありません</a>
         {% endif %}
     </body> 

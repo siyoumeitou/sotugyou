@@ -1,0 +1,49 @@
+/* 阿部鉄慎 */
+
+
+
+/* menuのcss */
+/* ページ全体の背景色を設定 */
+body {
+    background-color: #99CCFF; /* 背景色を#99CCFFに設定 */
+    font-family: Arial, sans-serif; /* 任意でフォントを指定 */
+    margin: 0; /* ページの余白をリセット */
+}
+
+/* タイトル部分のスタイル */
+.title {
+    font-size: 20px; /* 文字サイズ20px */
+    margin: 0; /* マージンをリセット */
+}
+
+/* リストのマーカーを消し、アイコンの表示を調整 */
+.menu {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.menu li {
+    margin-bottom: 10px;
+}
+
+.menu li a {
+    display: inline-flex; /* アイコンを中央に配置 */
+    align-items: center; 
+    justify-content: center;
+    width: 50px; /* アイコンサイズに合わせて幅を調整 */
+    height: 50px; /* アイコンサイズに合わせて高さを調整 */
+    background-color: #f0f0f0; /* 初期背景色 */
+    border-radius: 10px; /* 角を丸める */
+    transition: background-color 0.3s; /* ホバー時の背景色変化を滑らかに */
+    text-decoration: none;
+}
+
+.menu li a i {
+    font-size: 30px; /* アイコンの大きさを指定 */
+    color: #333; /* アイコンの色 */
+}
+
+/* ホバー時の背景色変更 */
+.menu li a:hover {
+    background-color: #DCEEFF; /* ホバー時の背景色 */
+}

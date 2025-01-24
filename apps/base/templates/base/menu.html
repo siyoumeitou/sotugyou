@@ -3,19 +3,17 @@
     <head>
         <meta charset="UTF-8" />
         <title>あああ</title>
-       <!-- <link  
-            rel="stylesheet"
-            href="{{ url_for('crud.static',filename='style.css') }}"
-        /> -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css') }}" />
     </head>
 
     <body>
         <ul class="menu">
-            <li><a href="/project/app_project" target="app">プロジェクト</a></li>
-            <li><a href="/chat/app" target="app">チャット</a></li>
-            <li><a href="/memo/app" target="app">メモ</a></li>
-            <li><a>メールボックス</a></li>
-            <li><a href="/calendar/app_calendar" target="app">カレンダー</a></li>
-        </ul>
+            <li><a href="/project/app" target="app"><i class="fas fa-folder"></i> </a></li>
+            <li><a href="/chat/app" target="app"><i class="fas fa-comments"></i> </a></li>
+            <li><a href="/memo/app" target="app"><i class="fas fa-sticky-note"></i> </a></li>
+            <li><a><i class="fas fa-envelope"></i> </a></li>
+            <li><a href="/calendar/app_calendar" target="app"><i class="fas fa-calendar-alt"></i> </a></li>
+        </ul>        
     </body> 
 </html>

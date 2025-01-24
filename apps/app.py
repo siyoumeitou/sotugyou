@@ -42,8 +42,7 @@ def create_app(config_key):
     #アプリのコンフィグ設定をする
     app.config.from_mapping(
         SECRET_KEY="2AZSMss3p5QPbcY2hBsJ",
-        SQLALCHEMY_DATABASE_URI=
-            f"sqlite:///{Path(__file__).parent.parent / 'local.sqlite'}",
+        SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://postgres:5432@localhost:5432/sample',
         SQLALCHEMY_TRACK_MODIFICATIONS=False,
         #SQLをコンソールログに出力する設定
         SQLALCHEMY_ECHO=True,

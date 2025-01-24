@@ -2,23 +2,21 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8" />
-       <!-- <link  
-            rel="stylesheet"
-            href="{{ url_for('crud.static',filename='style.css') }}"
-        /> -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/title.css') }}" />
     </head>
 
     <body>
-        <a>ProFect</a>
-        <div>
-            {% if current_user.is_authenticated %}
-                <span class="nav-link">{{ current_user.username }}さん</span>
-                <a class="nav-link" href="{{ url_for('auth.logout') }}" target="_top">ログアウト</a>
-            {% else %}
-                <a class="nav-link" href="{{ url_for('auth.signup') }}" target="_top" >新規登録</a>
-                <a class="nav-link" href="{{ url_for('auth.login') }}" target="_top" >ログイン</a>
-            {% endif %}
-
+        <div class="header">
+            <a class="app-title">ProFect</a>
+            <div class="nav">
+                {% if current_user.is_authenticated %}
+                    <span class="nav-link">{{ current_user.username }}さん</span>
+                    <a class="nav-link logout" href="{{ url_for('auth.logout') }}" target="_top">ログアウト</a>
+                {% else %}
+                    <a class="nav-link" href="{{ url_for('auth.signup') }}" target="_top">新規登録</a>
+                    <a class="nav-link" href="{{ url_for('auth.login') }}" target="_top">ログイン</a>
+                {% endif %}
+            </div>
         </div>
-    </body> 
+    </body>
 </html>
